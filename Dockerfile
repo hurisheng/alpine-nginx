@@ -6,3 +6,5 @@ RUN apk update && apk add bash
 
 # SSL certificates from letsenctypt
 VOLUME ["/etc/nginx/conf.d", "/etc/letsencrypt", "/opt/html"]
+
+EXPOSE 80 443
