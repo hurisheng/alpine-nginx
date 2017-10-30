@@ -5,4 +5,4 @@ LABEL author="hurisheng"
 RUN apk update && apk add bash
 
 # SSL certificates from letsenctypt
-VOLUME ["/etc/letsencrypt/live"]
+VOLUME ["/etc/nginx/conf.d", "/etc/letsencrypt/live", "/opt/html"]
