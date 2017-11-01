@@ -2,10 +2,9 @@ FROM nginx:alpine
 
 LABEL author="hurisheng"
 
-RUN apk add --no-cache bash && \
-    set -x && \
-    addgroup -g 82 -S www-data && \
-    adduser -u 82 -D -S -G www-data www-data
+RUN apk add --no-cache bash \
+    && addgroup -g 82 -S www-data \
+    && adduser -u 82 -D -S -G www-data www-data
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
