@@ -2,7 +2,7 @@ FROM nginx:alpine
 
 LABEL author="hurisheng"
 
-RUN apk update && apk add bash && \
+RUN apk add --no-cache bash && \
     set -x && \
     addgroup -g 82 -S www-data && \
     adduser -u 82 -D -S -G www-data www-data
