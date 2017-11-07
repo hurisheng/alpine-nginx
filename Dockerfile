@@ -9,6 +9,6 @@ RUN apk add --no-cache bash \
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # SSL certificates from letsenctypt
-VOLUME [ "/etc/nginx/conf.d", "/etc/letsencrypt", "/opt/html", "/var/log/nginx" ]
+VOLUME [ "/etc/nginx/conf.d", "/etc/letsencrypt", "/opt/html" ]
 
 EXPOSE 80 443
