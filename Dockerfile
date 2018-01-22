@@ -1,14 +1,15 @@
-FROM nginx:alpine
+FROM alpine:3.7
 
 LABEL author="hurisheng"
 
-RUN apk add --no-cache bash \
-    && addgroup -g 82 -S www-data \
-    && adduser -u 82 -D -S -G www-data www-data
+RUN apk add --no-cache bash nginx \
+    && mkdir /run/nginx \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-
-# SSL certificates from letsenctypt
-VOLUME [ "/etc/nginx/conf.d", "/etc/letsencrypt", "/opt/html" ]
+# SSL certificates from letsencrypt
+VOLUME [ "/etc/nginx/conf.d", "/etc/nginx/letsencrypt", "/opt/html" ]
 
 EXPOSE 80 443
+
+CMD [ "nginx", "-g", "daemon off;" ]
