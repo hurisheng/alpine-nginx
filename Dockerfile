@@ -8,7 +8,7 @@ RUN apk add --no-cache bash nginx \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # SSL certificates from letsencrypt
-VOLUME [ "/etc/nginx/conf.d", "/etc/nginx/letsencrypt", "/opt/html" ]
+VOLUME [ "/etc/nginx/conf.d", "/etc/nginx/ssl", "/opt/html" ]
 
 EXPOSE 80 443
 
