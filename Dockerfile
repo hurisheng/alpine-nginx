@@ -1,8 +1,11 @@
-FROM alpine:3.7
+FROM alpine:latest
 
 LABEL author="hurisheng"
 
-RUN apk add --no-cache bash nginx \
+RUN apk add --no-cache bash nginx tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && apk --no-cache del tzdata \
     && mkdir /run/nginx \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
