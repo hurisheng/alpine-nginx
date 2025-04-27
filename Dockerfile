@@ -14,4 +14,4 @@ VOLUME [ "/etc/nginx", "/etc/letsencrypt", "/opt/html" ]
 
 EXPOSE 80 443
 
-CMD ["nginx && crond -f"]
+CMD nginx && crond -f
