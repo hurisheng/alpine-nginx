@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL author="hurisheng"
 
-RUN apk add --no-cache bash nginx ca-certificates tzdata nginx-mod-stream \
+RUN apk add --no-cache bash nginx ca-certificates tzdata \
   && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
   && echo "Asia/Shanghai" > /etc/timezone \
   && apk --no-cache del tzdata \
@@ -10,8 +10,8 @@ RUN apk add --no-cache bash nginx ca-certificates tzdata nginx-mod-stream \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
   && echo "0 5 * * * nginx -s reload" >> /var/spool/cron/crontabs/root
 
-VOLUME [ "/etc/nginx/http.d", "/etc/nginx/stream.d", "/etc/nginx/nginx.conf", "/etc/letsencrypt", "/opt/html" ]
+VOLUME [ "/etc/nginx", "/etc/letsencrypt", "/opt/html" ]
 
 EXPOSE 80 443
 
-CMD nginx && crond -f
+CMD ["nginx && crond -f"]
